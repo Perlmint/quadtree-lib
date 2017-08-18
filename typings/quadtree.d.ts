@@ -67,15 +67,15 @@ declare class Quadtree<T extends Quadtree.QuadtreeItem> {
     *})
     * ```
     */
-    public onCollision(item: Quadtree.QuadtreeItem, callback: Function, collisionFunction ?: (elt1: T, elt2: T) => boolean) : void
+    public onCollision(item: Quadtree.QuadtreeItem, callback: (elt: T) => void, collisionFunction ?: (elt1: T, elt2: T) => boolean) : void
     /**
      * Returns an array of elements that match the `query` argument.
      */
-    public get(query: Object): Array<T>
+    public get(query: Quadtree.Query<T>): Array<T>
     /**
      * Returns an array of elements that match the `query` argument.
      */
-    public where(query: Object) : Array<T>
+    public where(query: Quadtree.Query<T>) : Array<T>
     /**
      * For each element of the quadtree, performs the `action` function.
      *
@@ -109,4 +109,7 @@ declare class Quadtree<T extends Quadtree.QuadtreeItem> {
 
 declare namespace Quadtree {
     export type QuadtreeItem = { x: number, y: number, width?: number, height?: number }
+    export type Query<T> = {
+        [key in keyof T]?: T[key]
+    } | QuadtreeItem
 }
