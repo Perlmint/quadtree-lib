@@ -37,7 +37,7 @@ declare class Quadtree<T extends Quadtree.QuadtreeItem> {
     /**
      * Removes an element from the quadtree.
      */
-    public remove(item: T) : boolean
+    public remove(item: T, stillObserve?: boolean) : boolean
     /**
      * Returns an array of elements which collides with the `item` argument.
      *`item` being an object having x, y, width & height properties.
